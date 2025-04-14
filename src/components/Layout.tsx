@@ -56,10 +56,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     padding: '0.5rem 1rem',
                     borderRadius: '8px',
                     transition: 'all 0.3s ease',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    },
                   }}
+                  className="nav-link"
                 >
                   {item.name}
                 </Link>

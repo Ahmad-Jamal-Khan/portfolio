@@ -37,6 +37,19 @@ a:hover {
   color: #5EEAFF;
 }
 
+.nav-link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
