@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, useScrollTrigger } from '@mui/material';
+import { Box, AppBar, Toolbar, useScrollTrigger } from '@mui/material';
 import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
