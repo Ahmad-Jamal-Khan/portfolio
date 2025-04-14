@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, Container, useScrollTrigger } from '@mui/material';
+import { Box, AppBar, Toolbar, IconButton, useScrollTrigger } from '@mui/material';
 import { motion } from 'framer-motion';
 import { GitHub, LinkedIn, Email } from '@mui/icons-material';
 import { ReactNode } from 'react';
