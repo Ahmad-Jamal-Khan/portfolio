@@ -20,8 +20,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   const socialLinks = [
-    { icon: <GitHubIcon />, href: 'https://github.com/yourusername' },
-    { icon: <LinkedInIcon />, href: 'https://linkedin.com/in/yourusername' },
+    { icon: <GitHubIcon />, href: 'https://github.com/Ahmad-Jamal-Khan' },
+    { icon: <LinkedInIcon />, href: 'https://linkedin.com/in/ahmad-jamal-khan' },
     { icon: <EmailIcon />, href: 'mailto:your.email@example.com' },
   ];
 
