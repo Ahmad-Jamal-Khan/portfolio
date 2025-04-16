@@ -79,8 +79,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </motion.a>
             ))}
             <motion.a
-              href="/ahmad_jamal_khan.pdf"
-              download
+              href="https://github.com/Ahmad-Jamal-Khan/portfolio/raw/gh-pages/ahmad_jamal_khan.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{
