@@ -4,35 +4,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import { Link } from 'react-scroll';
-import { useEffect, useState } from 'react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [resumeUrl, setResumeUrl] = useState<string>('');
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
-
-  useEffect(() => {
-    // Function to get the PDF file from public folder
-    const getResumeUrl = async () => {
-      try {
-        const response = await fetch('/');
-        const text = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
-        const links = Array.from(doc.getElementsByTagName('a'));
-        const pdfFile = links.find(link => link.href.endsWith('.pdf'));
-        if (pdfFile) {
-          setResumeUrl(pdfFile.href);
-        }
-      } catch (error) {
-        console.error('Error fetching resume:', error);
-      }
-    };
-
-    getResumeUrl();
-  }, []);
 
   const navigation = [
     { name: 'About', to: 'hero' },

@@ -1,7 +1,6 @@
-import { Box, Typography, Container, useTheme, Grid, Chip, IconButton, Card, CardContent, CardMedia } from '@mui/material';
+import { Box, Typography, Container, useTheme, Grid, Chip, Card, CardContent, CardMedia } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { GitHub, OpenInNew } from '@mui/icons-material';
 
 const Projects = () => {
   const theme = useTheme();

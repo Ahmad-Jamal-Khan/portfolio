@@ -1,4 +1,5 @@
-import { Box, Typography, Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot, TimelineOppositeContent } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot, TimelineOppositeContent } from '@mui/lab';
 import { motion } from 'framer-motion';
 import SchoolIcon from '@mui/icons-material/School';
 
