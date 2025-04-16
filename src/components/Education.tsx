@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Container, useTheme } from '@mui/material';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot, TimelineOppositeContent } from '@mui/lab';
 import { motion } from 'framer-motion';
 import SchoolIcon from '@mui/icons-material/School';
@@ -14,102 +14,159 @@ const education = [
 ];
 
 const Education = () => {
+  const theme = useTheme();
+
   return (
-    <Box id="education" sx={{ py: 8, px: { xs: 2, md: 4 } }}>
-      <Typography
-        variant="h2"
-        component={motion.h2}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        sx={{
-          color: '#00D8FF',
-          mb: 4,
-          textAlign: 'center',
-          fontSize: { xs: '2rem', md: '3rem' },
-        }}
-      >
-        Education
-      </Typography>
-      <Timeline position="alternate">
-        {education.map((edu, index) => (
-          <TimelineItem key={index}>
-            <TimelineOppositeContent
-              sx={{ m: 'auto 0' }}
-              align="right"
-              variant="body2"
-              color="text.secondary"
+    <Box
+      id="education"
+      sx={{
+        py: { xs: 8, md: 12 },
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 50% 30%, rgba(0, 216, 255, 0.03) 0%, rgba(10, 25, 47, 0) 70%)',
+          zIndex: 0,
+        },
+      }}
+    >
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Box sx={{ mb: 8, textAlign: 'center' }}>
+            <Typography
+              variant="body1"
+              sx={{
+                color: theme.palette.primary.main,
+                fontFamily: '"Fira Code", monospace',
+                mb: 2,
+              }}
             >
-              {edu.year}
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                <TimelineDot sx={{ bgcolor: '#00D8FF' }}>
-                  <SchoolIcon />
-                </TimelineDot>
-              </motion.div>
-              {index < education.length - 1 && (
-                <TimelineConnector sx={{ bgcolor: 'rgba(0, 216, 255, 0.3)' }} />
-              )}
-            </TimelineSeparator>
-            <TimelineContent sx={{ py: '12px', px: 2 }}>
-              <motion.div
-                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                <Typography 
-                  variant="h6" 
-                  component="span" 
-                  sx={{ 
-                    color: '#00D8FF',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {edu.school}
-                </Typography>
-                <Typography 
-                  variant="subtitle1"
-                  sx={{ 
-                    color: '#E6F1FF',
-                    fontWeight: 'medium',
-                    mb: 1,
-                  }}
-                >
-                  {edu.degree}
-                </Typography>
-                {edu.thesis && (
-                  <Typography 
-                    variant="body2"
+              <span style={{ color: theme.palette.primary.main }}>02.</span> Where I've Studied
+            </Typography>
+            <Typography variant="h2">Education</Typography>
+          </Box>
+
+          <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
+            <Timeline position="alternate">
+              {education.map((edu, index) => (
+                <TimelineItem key={index}>
+                  <TimelineOppositeContent
                     sx={{ 
-                      color: '#E6F1FF',
-                      fontStyle: 'italic',
-                      mb: 1,
+                      m: 'auto 0',
+                      color: 'rgba(230, 241, 255, 0.7)',
+                      fontFamily: '"Fira Code", monospace',
+                      fontSize: { xs: '0.8rem', md: '0.9rem' }
                     }}
                   >
-                    {edu.thesis}
-                  </Typography>
-                )}
-                <Typography 
-                  variant="body2"
-                  sx={{ 
-                    color: 'rgba(230, 241, 255, 0.8)',
-                  }}
-                >
-                  {edu.description}
-                </Typography>
-              </motion.div>
-            </TimelineContent>
-          </TimelineItem>
-        ))}
-      </Timeline>
+                    {edu.year}
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, type: 'spring' }}
+                    >
+                      <TimelineDot 
+                        sx={{ 
+                          bgcolor: '#00D8FF',
+                          boxShadow: '0 0 15px rgba(0, 216, 255, 0.5)'
+                        }}
+                      >
+                        <SchoolIcon />
+                      </TimelineDot>
+                    </motion.div>
+                    <TimelineConnector sx={{ 
+                      background: 'linear-gradient(180deg, #00D8FF 0%, rgba(0, 216, 255, 0.1) 100%)',
+                      width: '2px' 
+                    }} />
+                  </TimelineSeparator>
+                  <TimelineContent sx={{ py: '12px', px: 2 }}>
+                    <motion.div
+                      initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Box 
+                        sx={{ 
+                          p: 3,
+                          background: 'rgba(17, 34, 64, 0.5)',
+                          backdropFilter: 'blur(10px)',
+                          borderRadius: 2,
+                          border: '1px solid rgba(0, 216, 255, 0.1)',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            transform: 'translateY(-5px)',
+                            boxShadow: '0 10px 20px rgba(0, 216, 255, 0.1)',
+                            borderColor: '#00D8FF',
+                          }
+                        }}
+                      >
+                        <Typography 
+                          variant="h5" 
+                          component="h3" 
+                          sx={{ 
+                            color: '#00D8FF',
+                            mb: 1,
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {edu.school}
+                        </Typography>
+                        <Typography 
+                          variant="subtitle1"
+                          sx={{ 
+                            color: '#E6F1FF',
+                            fontWeight: 'medium',
+                            mb: 2,
+                          }}
+                        >
+                          {edu.degree}
+                        </Typography>
+                        {edu.thesis && (
+                          <Typography 
+                            variant="body2"
+                            sx={{ 
+                              color: theme.palette.primary.main,
+                              fontStyle: 'italic',
+                              mb: 2,
+                              borderLeft: `2px solid ${theme.palette.primary.main}`,
+                              pl: 2,
+                            }}
+                          >
+                            {edu.thesis}
+                          </Typography>
+                        )}
+                        <Typography 
+                          variant="body2"
+                          sx={{ 
+                            color: 'rgba(230, 241, 255, 0.8)',
+                          }}
+                        >
+                          {edu.description}
+                        </Typography>
+                      </Box>
+                    </motion.div>
+                  </TimelineContent>
+                </TimelineItem>
+              ))}
+            </Timeline>
+          </Box>
+        </motion.div>
+      </Container>
     </Box>
   );
 };
