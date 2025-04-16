@@ -4,12 +4,35 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import { Link } from 'react-scroll';
+import { useEffect, useState } from 'react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [resumeUrl, setResumeUrl] = useState<string>('');
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
+
+  useEffect(() => {
+    // Function to get the PDF file from public folder
+    const getResumeUrl = async () => {
+      try {
+        const response = await fetch('/');
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const links = Array.from(doc.getElementsByTagName('a'));
+        const pdfFile = links.find(link => link.href.endsWith('.pdf'));
+        if (pdfFile) {
+          setResumeUrl(pdfFile.href);
+        }
+      } catch (error) {
+        console.error('Error fetching resume:', error);
+      }
+    };
+
+    getResumeUrl();
+  }, []);
 
   const navigation = [
     { name: 'About', to: 'hero' },
@@ -21,8 +44,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const socialLinks = [
     { icon: <GitHubIcon />, href: 'https://github.com/Ahmad-Jamal-Khan' },
-    { icon: <LinkedInIcon />, href: 'https://linkedin.com/in/ahmad-jamal-khan' },
-    { icon: <EmailIcon />, href: 'mailto:your.email@example.com' },
+    { icon: <LinkedInIcon />, href: 'https://www.linkedin.com/in/ahmad-jamal-khan-jadoon/' },
+    { icon: <EmailIcon />, href: 'mailto:engr.ahmadjamalkhan@gmail.com' },
   ];
 
   return (
@@ -64,7 +87,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </motion.div>
             ))}
           </Box>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             {socialLinks.map((link, index) => (
               <motion.a
                 key={index}
@@ -78,6 +101,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 {link.icon}
               </motion.a>
             ))}
+            <motion.a
+              href="/Resume.pdf"
+              download
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(0, 216, 255, 0.1)',
+                border: '1px solid #00D8FF',
+                marginLeft: '1rem',
+              }}
+            >
+              Download Resume
+            </motion.a>
           </Box>
         </Toolbar>
       </AppBar>

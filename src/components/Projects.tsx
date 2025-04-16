@@ -1,4 +1,4 @@
-import { Box, Typography, Container, useTheme, Grid, Chip, IconButton } from '@mui/material';
+import { Box, Typography, Container, useTheme, Grid, Chip, IconButton, Card, CardContent, CardMedia } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GitHub, OpenInNew } from '@mui/icons-material';
@@ -12,9 +12,9 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Remote Sensing of Heart Beat',
+      title: 'Remote Sensing of Heart Beat using a Micromotion Doppler Radar',
       description: 'Developed a system using a micromotion doppler radar for non-contact heart rate monitoring. Implemented signal processing algorithms to extract heart rate from radar data.',
-      technologies: ['Radar Technology', 'Signal Processing', 'MATLAB', 'LabVIEW'],
+      technologies: ['Radar Technology', 'Signal Processing', 'MATLAB', 'GNURadio'],
       githubLink: '#',
       liveLink: '#',
       image: '/heart-rate-radar.png',
@@ -97,117 +97,75 @@ const Projects = () => {
 
           <Grid container spacing={4}>
             {projects.map((project, index) => (
-              <Grid item xs={12} key={project.title}>
+              <Grid item xs={12} md={6} key={project.title}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Box
+                  <Card
                     sx={{
+                      height: '100%',
                       display: 'flex',
-                      flexDirection: { xs: 'column', md: index % 2 === 0 ? 'row' : 'row-reverse' },
-                      gap: 4,
-                      p: 3,
-                      background: 'rgba(17, 34, 64, 0.7)',
+                      flexDirection: 'column',
+                      background: 'rgba(17, 34, 64, 0.5)',
                       backdropFilter: 'blur(10px)',
-                      borderRadius: 2,
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      transition: 'all 0.3s ease-in-out',
+                      border: '1px solid rgba(0, 216, 255, 0.1)',
+                      transition: 'all 0.3s ease',
                       '&:hover': {
-                        transform: 'translateY(-4px)',
-                        borderColor: theme.palette.primary.main,
+                        transform: 'translateY(-5px)',
+                        boxShadow: '0 10px 20px rgba(0, 216, 255, 0.1)',
                       },
                     }}
                   >
-                    <Box
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={project.image}
+                      alt={project.title}
                       sx={{
-                        flex: 1,
-                        position: 'relative',
-                        overflow: 'hidden',
-                        borderRadius: 1,
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          background: 'linear-gradient(45deg, rgba(0, 216, 255, 0.1), rgba(0, 216, 255, 0.05))',
-                          zIndex: 1,
-                        },
+                        objectFit: 'cover',
+                        borderBottom: '1px solid rgba(0, 216, 255, 0.1)',
                       }}
-                    >
-                      <Box
-                        component="img"
-                        src={project.image}
-                        alt={project.title}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography
+                        variant="h5"
+                        component="h3"
                         sx={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          transition: 'transform 0.3s ease-in-out',
-                          '&:hover': {
-                            transform: 'scale(1.05)',
-                          },
+                          color: '#00D8FF',
+                          mb: 2,
+                          fontWeight: 'bold',
                         }}
-                      />
-                    </Box>
-
-                    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <Typography variant="h5" color="primary.main">
+                      >
                         {project.title}
                       </Typography>
-                      <Typography variant="body1" color="text.secondary">
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: '#E6F1FF',
+                          mb: 2,
+                        }}
+                      >
                         {project.description}
                       </Typography>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {project.technologies.map((tech) => (
+                      <Box sx={{ mb: 2 }}>
+                        {project.technologies.map((tech, techIndex) => (
                           <Chip
-                            key={tech}
+                            key={techIndex}
                             label={tech}
-                            size="small"
                             sx={{
-                              background: 'rgba(0, 216, 255, 0.1)',
-                              color: theme.palette.primary.main,
-                              fontFamily: '"Fira Code", monospace',
-                              fontSize: '0.75rem',
+                              mr: 1,
+                              mb: 1,
+                              backgroundColor: 'rgba(0, 216, 255, 0.1)',
+                              color: '#00D8FF',
+                              border: '1px solid rgba(0, 216, 255, 0.2)',
                             }}
                           />
                         ))}
                       </Box>
-                      <Box sx={{ display: 'flex', gap: 2, mt: 'auto' }}>
-                        <IconButton
-                          component="a"
-                          href={project.githubLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{
-                            color: theme.palette.primary.main,
-                            '&:hover': {
-                              transform: 'translateY(-2px)',
-                            },
-                          }}
-                        >
-                          <GitHub />
-                        </IconButton>
-                        <IconButton
-                          component="a"
-                          href={project.liveLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{
-                            color: theme.palette.primary.main,
-                            '&:hover': {
-                              transform: 'translateY(-2px)',
-                            },
-                          }}
-                        >
-                          <OpenInNew />
-                        </IconButton>
-                      </Box>
-                    </Box>
-                  </Box>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </Grid>
             ))}

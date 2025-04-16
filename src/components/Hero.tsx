@@ -102,7 +102,7 @@ const Hero = () => {
                   <Button
                     variant="outlined"
                     size="large"
-                    href="mailto:design.engineer.ahmadjmal@gmail.com"
+                    href="mailto:engr.ahmadjamalkhan@gmail.com"
                     startIcon={<Email />}
                   >
                     Get In Touch
@@ -110,7 +110,7 @@ const Hero = () => {
                   <Button
                     variant="outlined"
                     size="large"
-                    href="https://github.com/yourusername"
+                    href="https://github.com/Ahmad-Jamal-Khan"
                     target="_blank"
                     startIcon={<GitHub />}
                   >
@@ -119,7 +119,7 @@ const Hero = () => {
                   <Button
                     variant="outlined"
                     size="large"
-                    href="https://linkedin.com/in/yourusername"
+                    href="https://www.linkedin.com/in/ahmad-jamal-khan-jadoon/"
                     target="_blank"
                     startIcon={<LinkedIn />}
                   >
