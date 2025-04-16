@@ -79,7 +79,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </motion.a>
             ))}
             <motion.a
-              href="/Resume.pdf"
+              href="/ahmad_jamal_khan.pdf"
               download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
